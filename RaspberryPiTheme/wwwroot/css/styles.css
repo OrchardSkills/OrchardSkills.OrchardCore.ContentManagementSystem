@@ -15,6 +15,7 @@
   --htms-background: white;
   --lighter-text-color: #404750;
   --markdown-background: #404750;
+  --light-image: #373737;
 }
 
 .theme-dark {
@@ -32,6 +33,7 @@
   --htms-background: black;
   --lighter-text-color: #dfdfdf;
   --markdown-background: #dfdfdf;
+  --light-image: black;
 }
 body {
   overflow-x: hidden;
@@ -43,6 +45,9 @@ footer {
   background-color: var(--htms-background);
   z-index: 5;
   position: relative;
+}
+.bg-image {
+  background-color: var(--light-image);
 }
 
 h1,
