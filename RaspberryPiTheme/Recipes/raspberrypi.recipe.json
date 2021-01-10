@@ -8,6 +8,13 @@
   "issetuprecipe": true,
   "categories": [ "default" ],
   "tags": [ "Raspberry Pi", "IoT", "CMS" ],
+
+  // The variables are evaluated the first time they are accessed, and reused across steps
+  "variables": {
+    "homeContentItemId": "[js:uuid()]",
+    // "now": "[js: new Date().toISOString()]"
+  },
+
   "steps": [
     {
       "name": "feature",
@@ -59,7 +66,7 @@
         "OrchardCore.Templates",
         "OrchardCore.Widgets",
 
-        // Orchard Skills
+        // Orchard Skills Modules
         "OrchardSkills.OrchardCore.RaspberryPi",
 
         // Themes
@@ -76,9 +83,10 @@
     {
       "name": "settings",
       "HomeRoute": {
-        "Action": "Index",
-        "Controller": "Home",
-        "Area": "RaspberryPiTheme"
+        "Action": "Display",
+        "Controller": "Item",
+        "Area": "OrchardCore.Contents",
+        "ContentItemId": "[js: variables('homeContentItemId')]"
       },
       "ChangeEmailSettings": {
         "AllowChangeEmail": true
@@ -104,6 +112,68 @@
         "AllowResetPassword": true,
         "UseSiteTheme": true
       }
+    },
+    {
+      "name": "ContentDefinition",
+      "ContentTypes": [
+        {
+          "Name": "Article",
+          "DisplayName": "Article",
+          "Hidden": false,
+          "Settings": {
+            "ContentTypeSettings": {
+              "Creatable": true,
+              "Draftable": true,
+              "Versionable": true,
+              "Listable": true
+            }
+          },
+          "ContentTypePartDefinitionRecords": [
+            {
+              "PartName": "Article",
+              "Name": "Article",
+              "Settings": {
+                "ContentTypePartSettings": {
+                  "Position": "3"
+                }
+              }
+            },
+            {
+              "PartName": "AutoroutePart",
+              "Name": "AutoroutePart",
+              "Settings": {
+                "AutoroutePartSettings": {
+                  "AllowCustomPath": true,
+                  "Pattern": "{{ Model.ContentItem | display_text | slugify }}",
+                  "ShowHomepageOption": true
+                },
+                "ContentTypePartSettings": {
+                  "Position": "1"
+                }
+              }
+            },
+            {
+              "PartName": "HtmlBodyPart",
+              "Name": "HtmlBodyPart",
+              "Settings": {
+                "ContentTypePartSettings": {
+                  "Editor": "Wysiwyg",
+                  "Position": "2"
+                }
+              }
+            },
+            {
+              "PartName": "TitlePart",
+              "Name": "TitlePart",
+              "Settings": {
+                "ContentTypePartSettings": {
+                  "Position": "0"
+                }
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "content",
@@ -139,7 +209,7 @@
                 "Author": "[js: parameters('AdminUsername')]",
                 "LinkMenuItemPart": {
                   "Name": "Home",
-                  "Url": null
+                  "Url": "home"
                 },
                 "LinkMenuItem": {}
               },
@@ -189,6 +259,35 @@
             },
             "MenuItemsListPart": {
               "Position": "4"
+            }
+          }
+        },
+        {
+          "ContentItemId": "[js: variables('homeContentItemId')]",
+          "ContentType": "Article",
+          "DisplayText": "Home",
+          "Latest": true,
+          "Published": true,
+          "Owner": "[js: parameters('AdminUserId')]",
+          "Author": "[js: parameters('AdminUsername')]",
+          "AutoroutePart": {
+            "Path": "home",
+            "SetHomepage": false
+          },
+          "HtmlBodyPart": {
+            "Html": "<p></p>"
+          },
+          "TitlePart": {
+            "Title": "About"
+          },
+          "Article": {
+            "Subtitle": {
+              "Text": "This is what I do."
+            },
+            "Image": {
+              "Paths": [
+                "about-bg.jpg"
+              ]
             }
           }
         }
