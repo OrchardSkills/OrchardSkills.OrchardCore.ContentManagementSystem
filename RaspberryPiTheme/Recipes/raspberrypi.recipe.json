@@ -55,7 +55,6 @@
         "OrchardCore.Placements",
         "OrchardCore.Queries",
         "OrchardCore.Shortcodes.Templates",
-        "OrchardCore.Taxonomies",
         "OrchardCore.Title",
         "OrchardCore.Templates",
         "OrchardCore.Widgets",
