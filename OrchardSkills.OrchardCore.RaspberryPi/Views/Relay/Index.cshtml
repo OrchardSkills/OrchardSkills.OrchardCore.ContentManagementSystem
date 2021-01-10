@@ -1,9 +1,7 @@
 @model RaspberryPiRelaySettingsViewModel
-<br />
+
 <!-- Background image -->
-<div class="p-5 text-center bg-image" style="
-      background-color: black;
-      height: 100vh;
+<div class="p-5 text-center bg-image" style="height: 100vh;
     ">
     @if (@ViewBag.ReplayState == "On")
     {
@@ -18,14 +16,14 @@
     <img src="" alt="">
     <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)">
         <div class="d-flex justify-content-center align-items-center h-100">
-            <div class="text-white">
-                <h1 class="mb-3">Raspberry Pi IoT Relay</h1>
-                <h4 class="mb-3">Relay device supported <strong>@ViewBag.ReplaySupported</strong></h4>
-                <h4 class="mb-3">GPIO Pin # <strong>@ViewBag.RelayGpioPin</strong></h4>
-                <h4 class="mb-3">Relay is <strong>@ViewBag.ReplayState</strong></h4>
+            <div class="text-white" >
+                <h1 class="mb-3"style="color: white !important">Raspberry Pi IoT Relay</h1>
+                <h4 class="mb-3"style="color: white !important">Relay device supported <strong>@ViewBag.ReplaySupported</strong></h4>
+                <h4 class="mb-3"style="color: white !important">GPIO Pin # <strong>@ViewBag.RelayGpioPin</strong></h4>
+                <h4 class="mb-3"style="color: white !important">Relay is <strong>@ViewBag.ReplayState</strong></h4>
 
-                <a class="btn btn-outline-success btn-lg" asp-action="ReplayOn">Turn on</a> |
-                <a class="btn btn-outline-danger btn-lg" asp-action="ReplayOff">Turn off</a>
+                <a class="btn btn-success fw-bolder btn-lg"style="color: white !important" asp-action="ReplayOn">On</a> |
+                <a class="btn btn-danger fw-bolder btn-lg"style="color: white !important" asp-action="ReplayOff">Off</a>
 
             </div>
         </div>
