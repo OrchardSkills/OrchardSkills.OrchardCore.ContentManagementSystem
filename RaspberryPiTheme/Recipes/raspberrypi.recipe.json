@@ -277,18 +277,18 @@
             "SetHomepage": false
           },
           "HtmlBodyPart": {
-            "Html": "<p></p>"
+            "Html": "<p>Welcome to the Raspberry Pi IoT CMS Web Application</p>"
           },
           "TitlePart": {
-            "Title": "About"
+            "Title": "Home"
           },
           "Article": {
             "Subtitle": {
-              "Text": "This is what I do."
+              "Text": "Raspberry Pi IoT"
             },
             "Image": {
               "Paths": [
-                "about-bg.jpg"
+                "home-bg.jpg"
               ]
             }
           }
